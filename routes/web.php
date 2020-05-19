@@ -34,4 +34,9 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'signin'
     ]);
 
+    Route::post('/createpost', [
+        'uses' => 'PostController@postCreatePost',
+        'as' => 'post.create'
+    ]);
+
 });
