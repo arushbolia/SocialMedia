@@ -1,0 +1,7 @@
+{
+    "team.appInsights.enabled": false,
+    "csharp.format.enable": false,
+    "dart.allowAnalytics": false,
+    "java.autobuild.enabled": false,
+    "php.validate.run": "onType"
+}
