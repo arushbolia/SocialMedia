@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
+    public function getAccount()
+    {
+        return view('account', ['user' => Auth::user()]);
+    }
+
     
 
     public function postSignUp(Request $request)
