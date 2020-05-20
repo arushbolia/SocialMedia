@@ -2,6 +2,11 @@
 
 @section('content')
     @include('includes.message-block')
+    <section class="row welcome-message">
+        <div class="col-md-6 offset-md-3">
+            <h4>Welcome {{Auth::user()->first_name}}!</h4>
+        </div>
+    </section>
     <section class="row new-post">
         <div class="col-md-6 offset-md-3">
             <header><h3>What do you have to say?</h3></header>
@@ -27,8 +32,8 @@
                         <a href="#">Like</a> |
                         <a href="#">Dislike</a>
                         @if(Auth::user() == $post->user)
-
-                            | <a href="#">Edit</a> |
+                            | 
+                            <a href="#" data-target="#edit-modal" data-toggle="modal" class="edit">Edit</a> |
                             <a href="{{ route('post.delete', ['post_id' => $post->id]) }}">Delete</a>
                         @endif
                         
@@ -38,4 +43,29 @@
             
         </div>
     </section>
+
+    <div class="modal" tabindex="-1" role="dialog" id="edit-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Post</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="post-body">Edit the Post</label>
+                            <textarea class="form-control" name="post-body" id="post-body" rows="5"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
