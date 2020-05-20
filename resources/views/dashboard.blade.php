@@ -33,7 +33,7 @@
                         <a href="#">Dislike</a>
                         @if(Auth::user() == $post->user)
                             | 
-                            <a href="#" data-target="#edit-modal" data-toggle="modal" class="edit">Edit</a> |
+                            <a href="#" class="edit" >Edit</a> |
                             <a href="{{ route('post.delete', ['post_id' => $post->id]) }}">Delete</a>
                         @endif
                         
