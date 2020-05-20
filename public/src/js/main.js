@@ -12,10 +12,10 @@ $('.post').find('.interaction').find('.edit').on('click', function (event) {
 
 });
 
-$('#modal-save').on('click', function (event) {
+$('#modal-save').on('click', function () {
     $.ajax({
         method: 'POST',
-        url: url,
+        url: urlEdit,
         data: {
             body: $('#post-body').val(),
             postId: postId,
@@ -25,4 +25,30 @@ $('#modal-save').on('click', function (event) {
         $(postBodyElement).text(msg['new_body']);
         $('#edit-modal').modal("hide");
     })
+});
+
+$('.like').on('click', function (event) {
+    event.preventDefault();
+
+    postId = event.target.parentNode.parentNode.dataset['postid'];
+    var isLike = event.target.previousElementSibling == null;
+
+    $.ajax({
+            method: 'POST',
+            url: urlLike,
+            data: {
+                isLike: isLike,
+                postId: postId,
+                _token: token
+            }
+        })
+        .done(function () {
+            event.target.innerText = isLike ? event.target.innerText == 'Like' ? 'You liked this post' : 'Like' : event.target.innerText == 'Dislike' ? 'You disliked this post' : 'Dislike';
+            if (isLike) {
+                event.target.nextElementSibling.innerText = 'Dislike';
+            }
+            else {
+                event.target.nextElementSibling.innerText = 'Like';
+            }
+        });
 });
